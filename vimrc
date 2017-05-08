@@ -1,0 +1,45 @@
+"
+" Cheatsheet of VIM commands/shortcuts
+" http://www.worldtimzone.com/res/vi.html
+"
+
+" Basics "
+syntax on
+set number "line numbers
+set ts=4 "tabs = 4 spaces
+set expandtab "expand tabs into spaces
+set showmatch "highlight matching brackets
+set cursorline "underline cursor line
+set mouse=a "allow mause actions
+let python_highlight_all=1
+
+
+" Vundle stuff "
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" Plugins "
+
+Plugin 'joshdick/onedark.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'scrooloose/nerdtree'
+
+" Colors "
+
+if (empty($TMUX))
+    if (has("nvim"))
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    if (has("termguicolors"))
+        set termguicolors
+    endif
+endif
+
+colorscheme onedark
