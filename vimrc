@@ -11,6 +11,8 @@ set expandtab "expand tabs into spaces
 set showmatch "highlight matching brackets
 set cursorline "underline cursor line
 set mouse=a "allow mause actions
+set smarttab
+set shiftwidth=4
 let python_highlight_all=1
 
 
@@ -30,6 +32,8 @@ filetype plugin indent on    " required
 Plugin 'joshdick/onedark.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'ervandew/supertab'
 
 " Colors "
 
@@ -43,3 +47,6 @@ if (empty($TMUX))
 endif
 
 colorscheme onedark
+
+" Strip trailing whitespaces from lines when :q is called "
+autocmd BufWritePre * %s/\s\+$//e
