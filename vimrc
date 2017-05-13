@@ -14,7 +14,7 @@ set mouse=a "allow mause actions
 set smarttab
 set shiftwidth=4
 let python_highlight_all=1
-
+set backspace=indent,eol,start
 
 " Vundle stuff "
 set nocompatible              " be iMproved, required
