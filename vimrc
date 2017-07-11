@@ -2,6 +2,9 @@
 " Cheatsheet of VIM commands/shortcuts
 " http://www.worldtimzone.com/res/vi.html
 "
+" Notes -
+" - to re-indent all code in vim enter gg=G in normal mode
+"
 
 " Basics "
 syntax on
@@ -50,3 +53,8 @@ colorscheme onedark
 
 " Strip trailing whitespaces from lines when :q is called "
 autocmd BufWritePre * %s/\s\+$//e
+
+" Remove background color and cursorline highlighting"
+hi Normal guibg=NONE ctermbg=NONE
+hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
+
