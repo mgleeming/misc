@@ -40,7 +40,6 @@ sudo apt-get install python-qt4 qt4-dev-tools python-qt4-dev pyqt4-dev-tools
 sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys E084DAB9
 
 # Ubuntu 16.04: xenial
-://<my.favorite.cran.mirror>/bin/linux/ubuntu <enter your ubuntu version>/
 sudo add-apt-repository 'deb https://ftp.ussg.iu.edu/CRAN/bin/linux/ubuntu xenial/'
 sudo apt-get update
 sudo apt-get install r-base
