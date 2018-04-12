@@ -1,0 +1,23 @@
+Get required files
+----------------------------------------------------------------------------------
+1) Download Oracle Virtualbox - https://www.virtualbox.org/wiki/Downloads
+2) Download Ubuntu 16.04 LTS ISO file - https://www.ubuntu.com/download/desktop
+
+Setup an Ubuntu Virtual Machine
+----------------------------------------------------------------------------------
+1) Start Virtualbox and Create a new VM
+    - Press 'New' (top left corner) then use default parameters throughout
+2) Run the VM and attache the Ubuntu ISO file when prompted
+3) Go through the Ubuntu setup wizard to install the OS 
+4) Install Virtualbox Guest additions through the guest OS
+5) Right-click on the desktop and select 'open terminal'
+6) type: 'sudo apt-get install git'
+7) acquire environment setup script:
+    type: git clone https://github.com/mgleeming/misc.git
+8) type: cd misc
+9) type: chmod +x installStuff.sh
+10) type: ./installStuff.sh
+
+you'll have to enter your password a few times now when prompted. This might take a while
+
+11) Now you need to install the necessary R packages
