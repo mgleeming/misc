@@ -4,6 +4,7 @@ import sys
 import scipy.signal
 import scipy.optimize as opt
 import matplotlib.pyplot as plt
+
 def gauss(x, amp, cent, wid, scale = 1):
     return(amp/ (np.sqrt(2*np.pi*(wid/scale)**2 )) * np.exp(-(x-(cent/scale))**2 / (2*(wid/scale)**2)))
 
@@ -37,8 +38,13 @@ def readSpectra(mzml_file, msLevel = None):
 spectra = readSpectra('/home/mleeming/Code/HiTIME-CPP/data/testing.mzML')
 
 shape = [
+    [-5.99675, 0.1756],
+    [-3.99906, 0.0593],
+    [-2.99841, 0.4044],
+    [-2.00013, 0.3994],
+    [-0.99877, 0.5407],
     [0, 1],
-    [6.0201, 1],
+    [2.00108, 0.5902],
 ]
 
 scale = 100000
