@@ -48,13 +48,21 @@ def getShapeDimensions(shape):
     offsets = [float(s[0]) for s in shape]
     return min(offsets), max(offsets)
 
-def makeModel(m, msubset, maxAmp, shape):
+def makeModel(m, msubset, maxAmp, shape, x, isubset):
     wid = 0.08
     ymodel = 0
     for s in shape:
         cent = s[0] + m
         amp = s[1] * maxAmp
         ymodel += amp / (np.sqrt(2*np.pi*(wid)**2 )) * np.exp(-(msubset-cent)**2 / (2*(wid)**2))
+
+        #index = np.argmin(np.abs(mzsubset - cent))
+
+        #targetmz = msubset[index]
+        #targetint = isubset[index]
+
+
+
     return ymodel
 
 def fit(x, mzs, ints):
@@ -67,11 +75,11 @@ def fit(x, mzs, ints):
         (mzs < mzs[x] + SHAPE_TARGET_UPPER_OFFSET + tolerance)
     )
 
-    if mask[0].shape[0] < 50: return
+    if mask[0].shape[0] < 100: return
 
     msubset = mzs[mask]
     isubset = ints[mask]
-    ifit = makeModel(m, msubset, max(isubset), shape)
+    ifit = makeModel(m, msubset, i, shape, x, isubset)
 
     pearsonC, p_val = pearsonr(ifit,isubset)
     # print (fit)
@@ -81,11 +89,12 @@ def fit(x, mzs, ints):
     return pearsonC
 
 
-MINIMUM_POINT_INTENSITY = 500
+MINIMUM_POINT_INTENSITY = 1000
 tolerance = 0.5
 SHAPE_TARGET_LOWER_OFFSET, SHAPE_TARGET_UPPER_OFFSET = getShapeDimensions(shape)
-spectra = readSpectra('MeOH_3_2.mzML')
+spectra = readSpectra(sys.argv[1])
 
+of1 = open('%s_out' %(sys.argv[1]), 'wt')
 for spectrum in spectra:
     time, mzs, ints, lvl = spectrum
     for x in range(len(mzs)):
@@ -95,5 +104,7 @@ for spectrum in spectra:
 
         pearsonC = fit(x, mzs, ints)
         if pearsonC:
-            print ('%s, %s, %s, %s'%(time, m,i,pearsonC))
+            of1.write('%s, %s, %s, %s\n'%(time, m,i,pearsonC))
+of1.close()
+
 
